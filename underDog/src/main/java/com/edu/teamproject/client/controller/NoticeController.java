@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.edu.teamproject.exception.UserException;
+import com.edu.teamproject.exception.MemberException;
 
 @Controller
 public class NoticeController {
@@ -27,11 +27,6 @@ public class NoticeController {
 	@GetMapping("/report/regist")
 	public String getRegistForm(HttpServletRequest request) {
 		return "client/notice/reportregistform";
-	}
-	
-	@ExceptionHandler(UserException.class)
-	public ModelAndView requestLogin() {
-		return new ModelAndView("client/loginrequest");
 	}
 	
 }

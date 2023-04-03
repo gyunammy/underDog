@@ -1,4 +1,6 @@
+<%@page import="com.edu.teamproject.domain.Member"%>
 <%@page contentType="text/html;charset=UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +26,10 @@
 
 	<!-- header -->
 	<%@include file="../inc/header.jsp"%>
+	<%	
+		String name = member.getName();
+		int member_idx = member.getMember_idx();
+	%>
 	<!-- breadcrumb-section -->
 	<div class="breadcrumb-section breadcrumb-bg">
 		<div class="container">
@@ -47,19 +53,19 @@
 			<div class="card-body">
 				<div class="billing-address-form">
 					<form id="form1">
+							<input type="hidden" name="user_idx" value="<%=member_idx%>">
 						<p>
 							<input type="text" name="title" placeholder="제목입력">
 						</p>
 						<p>
-							<input type="text" name="title" value="작성자" readonly="readonly">
+							<input type="text" name="writer" value="<%=name %>" readonly="readonly">
 						</p>
 						<p>
 							<textarea id="content" name="content"></textarea>
 						</p>
 					</form>
 					<div style="text-align: center; padding-top: 30px">
-						<button type="button" class="btn btn-warning btn-lg"
-							id="bt_regist">등록</button>
+						<button type="button" class="btn btn-warning btn-lg" id="bt_regist">등록</button>
 						<button type="button" class="btn btn-warning btn-lg" id="bt_list">목록</button>
 					</div>
 				</div>
@@ -79,17 +85,42 @@
 </body>
 
 <script type="text/javascript">
-	$(function() {
-
-		$("#content").summernote({
-			height : 400
-		});
-
-		$("#bt_list").click(function() {
-			location.href = "/campaign";
-		});
-
+function regist(){
+	let formData = new FormData();
+	
+	formData.append("user_idx",$("input[name='user_idx']").val());
+	formData.append("title",$("input[name='title']").val());
+	formData.append("writer",$("input[name='writer']").val());
+	formData.append("content",$("textarea[name='content']").val());
+	
+	$.ajax({
+		url:"/rest/campaign/regist",
+		type:"post",
+		data:formData,
+		processData:false,   // 쿼리스트링 사용여부
+		contentType:false, 
+		success:function(result, status, xhr){
+			alert(result.msg);
+			location.href="/campaign";
+		}
 	});
+}
+
+$(function() {
+
+	$("#content").summernote({
+		height : 400
+	});
+	
+	$("#bt_regist").click(function(){
+		regist();
+	});
+	
+	$("#bt_list").click(function() {
+		location.href = "/campaign";
+	});
+
+});
 </script>
 
 </html>

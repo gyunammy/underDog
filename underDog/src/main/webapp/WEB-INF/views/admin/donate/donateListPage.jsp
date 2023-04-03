@@ -1,4 +1,12 @@
+<%@page import="com.edu.teamproject.util.PageManager"%>
+<%@page import="com.edu.teamproject.domain.Donate"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8"%>
+<%
+	List<Donate> donateList = (List)request.getAttribute("donateList");
+	PageManager pm = new PageManager();
+	pm.init(donateList,request);
+%>
 <!DOCTYPE html>
 
 <!-- beautify ignore:start -->
@@ -86,31 +94,23 @@
 										<th>No</th>
 										<th>후원자</th>
 										<th>후원일</th>
-										<th>종류</th>
+										<th>금액</th>
 									</tr>
 								</thead>
 								<tbody class="table-border-bottom-0">
-									<tr>
-										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>3</strong></td>
-										<td>가나다</td>
-										<td>2023-03-08</td>
-										<td>일시</td>
-									</tr>
-									<tr>
-										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>2</strong></td>
-										<td>라마바</td>
-										<td>2023-03-08</td>
-										<td>일시</td>
-									</tr>
-									<tr>
-										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>1</strong></td>
-										<td>사아자</td>
-										<td>2023-03-08</td>
-										<td>일시</td>
-									</tr>
+									<%int curPos=pm.getCurPos(); %>
+									<%int num=pm.getNum(); %>
+									<%for(int a=0;a<pm.getPageSize();a++){ %>
+									<%if(num<1)break; %>
+									<% Donate donate = donateList.get(a);%>
+										<tr>
+											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+												<strong><%=num-- %></strong></td>
+											<td><%=donate.getMember().getName() %></td>
+											<td><%=donate.getRegdate().substring(0,10) %></td>
+											<td><%=donate.getPrice()%> 원</td>
+										</tr>
+									<%} %>
 								</tbody>
 							</table>
 							
@@ -119,22 +119,30 @@
 									<div class="col-sm-10">
 										<nav aria-label="Page navigation">
 											<ul class="pagination">
+												<%if(pm.getTotalPage()<pm.getFirstPage()-1){ %>
 												<li class="page-item prev"><a class="page-link"
-													href="javascript:void(0);"><i
+													href="/admin/donateList?currentPage=<%=pm.getFirstPage()-1%>"><i
 														class="tf-icon bx bx-chevron-left"></i></a></li>
-												<li class="page-item"><a class="page-link"
-													href="javascript:void(0);">1</a></li>
-												<li class="page-item"><a class="page-link"
-													href="javascript:void(0);">2</a></li>
-												<li class="page-item active"><a class="page-link"
-													href="javascript:void(0);">3</a></li>
-												<li class="page-item"><a class="page-link"
-													href="javascript:void(0);">4</a></li>
-												<li class="page-item"><a class="page-link"
-													href="javascript:void(0);">5</a></li>
-												<li class="page-item next"><a class="page-link"
-													href="javascript:void(0);"><i
-														class="tf-icon bx bx-chevron-right"></i></a></li>
+												<%}else{ %>
+													<li class="page-item prev"><a class="page-link"
+													href="javascript:alert('이전페이지가 없습니다.')"><i
+														class="tf-icon bx bx-chevron-left"></i></a></li>												
+												<%} %>
+												<%for(int a=pm.getFirstPage();a<=pm.getLastPage();  a++){ %>
+												<%if(a>pm.getTotalPage())break; %>
+												<li class="page-item <%if(a==pm.getCurrentPage()){ %>active<%}%>"><a class="page-link"
+													href="donateList?currentPage=<%=a%>"><%=a %></a></li>
+												<%} %>
+												
+												<%if(pm.getTotalPage()> pm.getLastPage()+1){ %>
+													<li class="page-item next"><a class="page-link"
+														href="/admin/donateList?currentPage=<%=pm.getLastPage()+1%>"><i
+															class="tf-icon bx bx-chevron-right"></i></a></li>
+												<%} else { %>
+														<li class="page-item next"><a class="page-link"
+														href="javascript:alert('다음페이지가 없습니다.');"><i
+															class="tf-icon bx bx-chevron-right"></i></a></li>
+												<%} %>
 											</ul>
 										</nav>
 									</div>

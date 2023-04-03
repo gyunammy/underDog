@@ -26,5 +26,9 @@
     <!--
     <Manager pathname="" />
     -->
+   	<ResourceLink global="jdbc/aws" name="jdbc/aws" type="javax.sql.DataSource"/>
+
+	<ResourceLink global="jdbc/oracle" name="jdbc/oracle" type="javax.sql.DataSource"/>	
+    
 	<ResourceLink global="jdbc/mysql" name="jdbc/mysql" type="javax.sql.DataSource"/> 
 </Context>

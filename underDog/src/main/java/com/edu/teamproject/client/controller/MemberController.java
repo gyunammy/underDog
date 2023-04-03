@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.edu.teamproject.domain.User;
-import com.edu.teamproject.model.adopt.UserService;
+import com.edu.teamproject.domain.Member;
+import com.edu.teamproject.model.adopt.MemberService;
 import com.edu.teamproject.sns.GoogleLogin;
 import com.edu.teamproject.sns.GoogleOauthToken;
 import com.edu.teamproject.util.UserManager;
@@ -37,7 +37,7 @@ public class MemberController {
 	private GoogleLogin googleLogin;
 
 	@Autowired
-	private UserService userService;
+	private MemberService userService;
 
 	@Autowired
 	private UserManager userManager;
@@ -124,27 +124,28 @@ public class MemberController {
 		String email = (String) userMap.get("email");
 		String name = (String) userMap.get("name");
 
-		User user = new User();
+		Member member = new Member();
 
-		user.setId(id);
-		user.setEmail(email);
-		user.setName(name);
-		user.setSns("google");
+		member.setId(id);
+		member.setEmail(email);
+		member.setName(name);
+		member.setSns("google");
 
-		boolean result = userManager.loginCheck(user);
+		boolean result = userManager.loginCheck(member);
 
 		logger.info("로그인검사결과는 : " + result);
 
 		// db에 id 값이 있을경우와 그렇지 않은경우
 		if (result) {
 			// 회원가입 처리 (서비스 regist) 세션에 담자.
-			userService.insert(user);
-			session.setAttribute("user", user);
+			userService.insert(member);
+			session.setAttribute("member", member);
 		} else {
 			// 로그인 처리만 하자 (세션에 담자)
-			session.setAttribute("user", user);
+			Member userBySelect=userService.selectById(id);
+			session.setAttribute("member", userBySelect);
 		}
-		ModelAndView mav = new ModelAndView("redirect:/");
+		ModelAndView mav = new ModelAndView("redirect:/afterLog");
 
 		return mav;
 	}

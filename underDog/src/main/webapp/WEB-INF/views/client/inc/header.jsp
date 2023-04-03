@@ -1,9 +1,7 @@
+<%@page import="com.edu.teamproject.domain.Member"%>
 <%@page contentType="text/html;charset=UTF-8"%>
 <%
-	String name=(String) session.getAttribute("name");
-	String email=(String) session.getAttribute("email");
-	out.print("세션 이름은 : " + name + "   ");
-	out.print("세션 이메일은 : " + email);
+	Member member= (Member)session.getAttribute("member");
 %>
 	<!-- header -->
 	<div class="top-header-area" id="sticker">
@@ -46,15 +44,15 @@
 										<li><a href="/campaign">공모사업</a></li>
 									</ul>
 								</li>
-								<li><a href="/shop">쇼핑몰</a></li>
-								<%if(name!=null){ %>
-									<li><a href="/login">Logout</a></li>
+								<li><a href="javascript:alert('서비스준비중입니다..')">쇼핑몰</a></li>
+								<%if(member!=null){ %>
+									<li><a href="/logout">Logout</a></li>
 								<%}else{ %>
 									<li><a href="/login">Login</a></li>
 								<%} %>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="/cart"><i class="fas fa-shopping-cart"></i></a>
+										<a class="shopping-cart" href="javascript:alert('서비스준비중입니다..')"><i class="fas fa-shopping-cart"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 									</div>
 								</li>

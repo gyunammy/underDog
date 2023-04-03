@@ -5,12 +5,15 @@ import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 
-import com.edu.teamproject.exception.UserException;
+import com.edu.teamproject.exception.MemberException;
 
+import lombok.extern.slf4j.Slf4j;
+
+//@Slf4j
 //로그인이 필요한 서비스에 관여하여, 로그인이 되어 잇지 않으면 로그인 에러 처리 
 public class SessionCheckAdvice {
 	
-	public Object loginCheck(ProceedingJoinPoint joinPoint) throws UserException, Throwable{
+	public Object loginCheck(ProceedingJoinPoint joinPoint) throws MemberException, Throwable{
 		
 		//반환값을 받을 변수
 		Object result=null;
@@ -34,20 +37,36 @@ public class SessionCheckAdvice {
 		if(
 				uri.equals("/") ||
 				uri.equals("/adopt") ||
-				uri.equals("/donate") ||
 				uri.equals("/report") ||
 				uri.equals("/service") ||
 				uri.equals("/best") ||
 				uri.equals("/loc") ||
 				uri.equals("/login") ||
 				uri.equals("/loginrequest") ||
-				uri.equals("/shop")
+				uri.equals("/shop") ||
+				uri.equals("/contact") ||
+				
+				uri.equals("/logout") ||
+				
+				uri.equals("/rest/loc") ||
+				
+				uri.equals("/rest/adopt") ||
+				uri.equals("/adopt/detail") ||
+				
+				
+				uri.equals("/rest/member/authform/google") ||
+				uri.equals("/rest/member/authform/kakao") ||
+				uri.equals("/rest/member/authform/naver") ||
+				
+				uri.equals("/sns/google/callback") ||
+				uri.equals("/sns/kakao/callback") ||
+				uri.equals("/sns/naver/callback")
 			) {
 				result=joinPoint.proceed();
 		}else {
 			session = request.getSession();
-			if(session.getAttribute("user")==null) {
-				throw new UserException("로그인이 필요한 서비스 입니다.");
+			if(session.getAttribute("member")==null) {
+				throw new MemberException("로그인이 필요한 서비스 입니다.");
 			}
 			result=joinPoint.proceed();
 		}

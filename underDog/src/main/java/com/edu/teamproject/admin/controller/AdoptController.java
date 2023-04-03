@@ -32,9 +32,9 @@ public class AdoptController {
 
 	// 입양리스트 페이지 요청
 	@GetMapping("/adopt/list")
-	public ModelAndView getAdoptList() {
-
-		List<Adopt> adoptList = adoptService.selectAll();
+	public ModelAndView getAdoptList(HttpServletRequest request) {
+		
+		List<Adopt> adoptList=adoptService.selectAll();
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("adoptList", adoptList);
@@ -109,9 +109,12 @@ public class AdoptController {
 
 			adoptList = adoptService.selectBySearch(map);
 		}
-
+		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("adoptList", adoptList);
+		mav.addObject("adoptList",adoptList);
+		mav.addObject("category", category);
+		mav.addObject("keyword", keyword);
+
 		mav.setViewName("admin/adopt/adoptListPage");
 
 		return mav;

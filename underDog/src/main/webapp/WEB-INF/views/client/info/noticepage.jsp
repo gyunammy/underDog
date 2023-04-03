@@ -1,4 +1,12 @@
+<%@page import="com.edu.teamproject.util.PageManager"%>
+<%@page import="com.edu.teamproject.domain.Notice"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8"%>
+<%
+	List<Notice> noticeList=(List)request.getAttribute("noticeList");
+	PageManager pm = new PageManager();
+	pm.init(noticeList,request);
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,27 +83,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>3</td>
-							<td>23년 01월 01일 - 공지사항</td>
-							<td>관리자</td>
-							<td>23-03-16</td>
-							<td>0</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>23년 02월 01일 - 공지사항</td>
-							<td>관리자</td>
-							<td>23-03-16</td>
-							<td>23</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td>23년 03월 01일 - 공지사항</td>
-							<td>관리자</td>
-							<td>23-03-16</td>
-							<td>16</td>
-						</tr>
+						<%int curPos=pm.getCurPos(); %>
+						<%int num=pm.getNum(); %>
+						<%for(int a=0;a<pm.getPageSize();a++){ %>
+						<%if(num<1)break; %>
+						<%Notice notice = noticeList.get(a); %>
+							<tr>
+								<td><%=num-- %></td>
+								<td><%=notice.getTitle() %></td>
+								<td>관리자</td>
+								<td><%=notice.getRegdate().substring(0,10) %></td>
+								<td>0</td>
+							</tr>
+						<%} %>
 					</tbody>
 				</table>
 			</div>

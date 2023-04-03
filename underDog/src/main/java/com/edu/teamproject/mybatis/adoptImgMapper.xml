@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insert" parameterType="AdoptImg">
-		insert into adoptimg(adopt_idx, filename) values(#{adopt.adopt_idx},#{filename})
+		insert into adoptimg(adoptimg_idx, adopt_idx, filename) values(seq_adoptimg.nextval, #{adopt.adopt_idx},#{filename})
 	</insert>
 	
 	<delete id="delete" parameterType="int">

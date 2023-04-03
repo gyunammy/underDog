@@ -119,7 +119,7 @@
 				<div data-i18n="Misc">자원봉사</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/serviceList"
+				<li class="menu-item"><a href="/admin/service/list"
 					class="menu-link">
 						<div data-i18n="Basic">자원봉사자 모집</div>
 				</a></li>
@@ -135,7 +135,7 @@
 					class="menu-link">
 						<div data-i18n="Basic">신고목록</div>
 				</a></li>
-				<li class="menu-item"><a href="/admin/noticeList"
+				<li class="menu-item"><a href="/admin/notice/list"
 					class="menu-link">
 						<div data-i18n="Basic">공지사항</div>
 				</a></li>
@@ -148,7 +148,7 @@
 			<div data-i18n="Misc">재단활동</div>
 	</a>
 		<ul class="menu-sub">
-			<li class="menu-item"><a href="/admin/campaignList"
+			<li class="menu-item"><a href="/admin/campaign/list"
 				class="menu-link">
 					<div data-i18n="Basic">공모사업 목록</div>
 			</a></li>

@@ -1,14 +1,20 @@
 package com.edu.teamproject.admin.controller;
 
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class AdminController {
-
+	
 	//메인페이지 요청
 	@GetMapping("/main")
 	public String getMain() {
+
 		return "admin/main";
 	}
 	
@@ -28,12 +34,6 @@ public class AdminController {
 	@GetMapping("/loginform")
 	public String getLoginForm() {
 		return "admin/loginPage";
-	}
-	
-	//멤버리스트 페이지 요청
-	@GetMapping("/memberList")
-	public String getMemberList() {
-		return "admin/memberListPage";
 	}
 
 }

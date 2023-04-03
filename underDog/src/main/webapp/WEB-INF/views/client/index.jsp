@@ -1,8 +1,8 @@
 
-<%@page import="com.edu.teamproject.domain.User"%>
+<%@page import="com.edu.teamproject.domain.Member"%>
 <%@page contentType="text/html;charset=UTF-8"%>
 <%
-	User user=(User)session.getAttribute("user");
+	Member member=(Member)session.getAttribute("member");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,16 +62,16 @@
 										<li><a href="/notice">공지사항</a></li>
 										<li><a href="/campaign">공모사업</a></li>
 									</ul></li>
-								<li><a href="/shop">쇼핑몰</a></li>
+								<li><a href="javascript:alert('서비스준비중입니다..')">쇼핑몰</a></li>
 								
-								<%if(user!=null){ %>
+								<%if(member!=null){ %>
 									<li><a href="/logout">Logout</a></li>
 								<%}else{ %>
 									<li><a href="/login">Login</a></li>
 								<%} %>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="/cart"><i
+										<a class="shopping-cart" href="javascript:alert('서비스준비중입니다..')"><i
 											class="fas fa-shopping-cart"></i></a> <a
 											class="mobile-hide search-bar-icon" href="#"><i
 											class="fas fa-search"></i></a>
@@ -121,8 +121,8 @@
 					<div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Fresh & Organic</p>
-								<h1>Delicious Seasonal Fruits</h1>
+								<p class="subtitle">Donate to us</p>
+								<h1>작은 희망이 <br>되어주세요</h1>
 								<div class="hero-btns">
 									<a href="/donate" class="boxed-btn">후원하러 가기</a> <a
 										href="/contact" class="bordered-btn">Contact Us</a>
@@ -140,8 +140,8 @@
 					<div class="col-lg-10 offset-lg-1 text-center">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Fresh Everyday</p>
-								<h1>100% Organic Collection</h1>
+								<p class="subtitle">waiting to family..</p>
+								<h1>외로운 친구의 <br> 가족이 되어주세요</h1>
 								<div class="hero-btns">
 									<a href="/adopt" class="boxed-btn">입양하러 가기</a> <a
 										href="/contact" class="bordered-btn">Contact Us</a>
@@ -159,8 +159,8 @@
 					<div class="col-lg-10 offset-lg-1 text-right">
 						<div class="hero-text">
 							<div class="hero-text-tablecell">
-								<p class="subtitle">Mega Sale Going On!</p>
-								<h1>Get December Discount</h1>
+								<p class="subtitle">100% environmentally friendly product!</p>
+								<h1>유기견 후원하고 <br>좋은 제품 쇼핑하세요!</h1>
 								<div class="hero-btns">
 									<a href="/shop" class="boxed-btn">후원몰 가기</a> <a href="/contact"
 										class="bordered-btn">Contact Us</a>
@@ -232,12 +232,10 @@
 							</div>
 							<div class="client-meta">
 								<h3>
-									Saira Hakim <span>Local shop owner</span>
+									박 규남 <span>Local shop owner</span>
 								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
+								<p class="testimonial-body">" 저희 언더독이 외로운 아이들에게
+									가족의 따뜻함을 느끼는 기회가 되길 바랍니다. "</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
 								</div>
@@ -250,12 +248,9 @@
 							</div>
 							<div class="client-meta">
 								<h3>
-									David Niph <span>Local shop owner</span>
+									최 정우 <span>Local shop owner</span>
 								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
+								<p class="testimonial-body">" 부상으로 인한 휴식중.. 쾌유를 빕니다. "</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
 								</div>
@@ -268,12 +263,9 @@
 							</div>
 							<div class="client-meta">
 								<h3>
-									Jacob Sikim <span>Local shop owner</span>
+									정 수권 <span>Local shop owner</span>
 								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
+								<p class="testimonial-body">" -탈주- "</p>
 								<div class="last-icon">
 									<i class="fas fa-quote-right"></i>
 								</div>
@@ -292,24 +284,20 @@
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-bg">
-						<a href="https://www.youtube.com/watch?v=DBLlFWYcIGQ"
+						<a href="https://www.youtube.com/watch?v=YVMCByJ29OQ"
 							class="video-play-btn popup-youtube"><i class="fas fa-play"></i></a>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-12">
 					<div class="abt-text">
-						<p class="top-sub">Since Year 1999</p>
+						<p class="top-sub">Since Year 2023</p>
 						<h2>
-							We are <span class="orange-text">Fruitkha</span>
+							We are <span class="orange-text">UnderDog</span>
 						</h2>
-						<p>Etiam vulputate ut augue vel sodales. In sollicitudin neque
-							et massa porttitor vestibulum ac vel nisi. Vestibulum placerat
-							eget dolor sit amet posuere. In ut dolor aliquet, aliquet sapien
-							sed, interdum velit. Nam eu molestie lorem.</p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Sapiente facilis illo repellat veritatis minus, et labore minima
-							mollitia qui ducimus.</p>
-						<a href="/donate" class="boxed-btn mt-4">More</a>
+						<p>유기견 후원 단체는 유기견들을 구조하고, 새로운 가정을 찾아주는데 주력하며, 무료로 입양을 돕는 등 유기견의 생명과 안녕을 위해 노력합니다. 이들 단체는 기부금, 자원봉사, 입양 등 다양한 방법을 통해 유기견들을 지원합니다.</p>
+						<p>따라서 유기견 후원 단체를 통해 유기견들에게 새로운 삶의 기회를 제공하고 보호하는 데에 도움을 줄 수 있습니다. 이들 단체는 전 세계적으로 다양하게 존재하며, 많은 사람들이 후원을 통해 유기견들을 지원하고 있습니다.</p>
+						
+							<a id="bt_regist" class="boxed-btn mt-4">자원봉사 신청하기</a>
 					</div>
 				</div>
 			</div>
@@ -317,7 +305,9 @@
 	</div>
 	<!-- end advertisement section -->
 
+
 	<!-- latest news -->
+	<!-- 
 	<div class="latest-news pt-150 pb-150">
 		<div class="container">
 
@@ -408,9 +398,12 @@
 			</div>
 		</div>
 	</div>
+	
+	 -->
 	<!-- end latest news -->
 
 	<!-- product section -->
+	<!-- 
 	<div class="product-section mt-150 mb-150">
 		<div class="container">
 			<div class="row">
@@ -474,6 +467,8 @@
 			</div>
 		</div>
 	</div>
+	
+	 -->
 	<!-- end product section -->
 
 	<!-- footer -->
@@ -483,4 +478,31 @@
 	<%@include file="./inc/footer_link.jsp"%>
 
 </body>
+<script type="text/javascript">
+
+function regist(){
+	
+	$.ajax({
+		url:"/rest/member/volunteer",
+		type:"post",
+		success:function(result, status, xhr){
+			alert(result.msg);
+
+		},
+		error:function(xhr, status, err){
+			location.href="/loginrequest"
+		}
+	});
+}
+
+$(function(){
+	$("#bt_regist").click(function(){
+		if(confirm("자원봉사신청을 하시겠습니까??")){
+			regist();
+		}
+	});
+});
+
+
+</script>
 </html>

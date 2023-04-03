@@ -15,28 +15,23 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- 데이터베이스 선택 resource-ref ? -->
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/mysql"
-		resource-ref="true" />
 
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/oracle" resource-ref="true"/>
+	
 	<!-- 트랜잭션 매니저 선택 -->
 	<beans:bean id="dataSourceTransactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 		p:dataSource-ref="dataSource" />
 
 	<!-- 스프링에서 트랜잭션을 적용하기 위한 어노테이션 적용법 -->
-	<tx:annotation-driven
-		transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+	
+	<beans:bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean" 
+	p:dataSource-ref="dataSource" p:configLocation="classpath:com/edu/teamproject/mybatis/config.xml"/>
+	
+	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
 
-
-	<beans:bean id="sqlSessionFactoryBean"
-		class="org.mybatis.spring.SqlSessionFactoryBean"
-		p:dataSource-ref="dataSource"
-		p:configLocation="classpath:com/edu/teamproject/mybatis/config.xml" />
-
-	<beans:bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<beans:constructor-arg name="sqlSessionFactory"
-			ref="sqlSessionFactoryBean" />
 	</beans:bean>
 
 	<!-- 파일업로드하기 위한 빈등록 -->

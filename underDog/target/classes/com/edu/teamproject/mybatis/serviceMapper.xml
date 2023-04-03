@@ -15,7 +15,7 @@
 	</select>
 
 	<insert id="insert" parameterType="Service">
-		insert into service(title, content, max) values(#{title}, #{content}, #{max})
+		insert into service(service_idx, title, content, max) values(seq_service.nextval, #{title}, #{content}, #{max})
 	</insert>
 	
 	<update id="update" parameterType="Service">

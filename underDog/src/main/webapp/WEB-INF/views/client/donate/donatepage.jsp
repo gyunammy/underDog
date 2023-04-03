@@ -17,6 +17,11 @@
 
 <%@include file="../inc/header_link.jsp"%>
 
+<!-- 결제 api -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<!-- 아래 제이쿼리는 1.0이상이면 원하는 버전을 사용하셔도 무방합니다. -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
 </head>
 <body>
 
@@ -48,7 +53,7 @@
 				<div class="col-lg-7">
 					<div class="featured-text">
 						<h2 class="pb-3">
-							왜 <span class="orange-text">" "인가요?</span>
+							왜 <span class="orange-text">"UnderDog"인가요?</span>
 						</h2>
 						<div class="row">
 							<div class="col-lg-6 col-md-6 mb-4 mb-md-5">
@@ -174,80 +179,18 @@
 		</div>
 	</div>
 	<!-- end team section -->
-	<!-- testimonail-section -->
-	<div class="testimonail-section mt-80 mb-150">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="testimonial-sliders">
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar1.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>
-									Saira Hakim <span>Local shop owner</span>
-								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar2.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>
-									David Niph <span>Local shop owner</span>
-								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="assets/img/avaters/avatar3.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>
-									Jacob Sikim <span>Local shop owner</span>
-								</h3>
-								<p class="testimonial-body">" Sed ut perspiciatis unde omnis
-									iste natus error veritatis et quasi architecto beatae vitae
-									dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde
-									omnis iste natus error sit voluptatem accusantium "</p>
-								<div class="last-icon">
-									<i class="fas fa-quote-right"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end testimonail-section -->
+	
 	<!-- shop banner -->
 	<section class="shop-banner">
 		<div class="container">
 			<h3>
-				December sale is on! <br> with big <span class="orange-text">Discount...</span>
+				후원통해<br>  외로운 아이들을  <span class="orange-text">도와주세요</span>
 			</h3>
 			<div class="sale-percent">
-				<span>Sale! <br> Upto
-				</span>50% <span>off</span>
+				<span class="white-text">싸다! <br> 단돈
+				</span>100원 <span></span>
 			</div>
-			<a href="#" class="cart-btn btn-lg">후원하기</a>
+			<a class="cart-btn btn-lg" id="bt_donate">후원하기</a>
 		</div>
 	</section>
 	<!-- end shop banner -->
@@ -263,5 +206,63 @@
 	<%@include file="../inc/footer_link.jsp"%>
 
 </body>
+<script type="text/javascript">
 
+function regist(price){
+    let json={
+    		member:{
+    				member_idx:<%=member.getMember_idx()%>
+    				},
+    		price:price
+    };
+    
+    $.ajax({
+    	url:"/rest/donate",
+    	type:"post",
+    	contentType:"application/json;charset=utf-8",
+    	data:JSON.stringify(json),
+		processData:false, // 쿼리스트링화 여부
+    	success:function(result, status, xhr){
+    		
+    	}
+    })
+}
+
+function iamport(){
+	//가맹점 식별코드
+	IMP.init('imp61633154');
+	IMP.request_pay({
+	    pg : 'kcp',
+	    pay_method : 'card',
+	    merchant_uid : 'merchant_' + new Date().getTime(),
+	    name : '일시후원' , //결제창에서 보여질 이름
+	    amount : 100, //실제 결제되는 가격
+	    buyer_email : "<%=member.getEmail()%>",
+	    buyer_name : "<%=member.getName()%>"
+	}, function(rsp) {
+		console.log(rsp);
+	    if ( rsp.success ) {
+	    	var msg = '결제가 완료되었습니다.';
+	    	/*
+	        msg += '고유ID : ' + rsp.imp_uid;
+	        msg += '상점 거래ID : ' + rsp.merchant_uid;
+	        msg += '결제 금액 : ' + rsp.paid_amount;
+	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	        */
+			regist(rsp.paid_amount);
+	        
+	    } else {
+	    	 var msg = '결제에 실패하였습니다.';
+	         msg += '에러내용 : ' + rsp.error_msg;
+	    }
+	    alert(msg);
+	});
+}
+$(function(){
+	$("#bt_donate").click(function(){
+		iamport();
+	});
+});
+
+</script>
 </html>

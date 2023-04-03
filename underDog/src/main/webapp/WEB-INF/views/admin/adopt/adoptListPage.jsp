@@ -7,6 +7,9 @@
 		PageManager pm = new PageManager();
 		List<Adopt> adoptList=(List)request.getAttribute("adoptList");
 		pm.init(adoptList, request);
+		
+		String category = (String)request.getAttribute("category");
+		String keyword = (String)request.getAttribute("keyword");
 %>
 <!-- beautify ignore:start -->
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr"
@@ -81,8 +84,10 @@
 						</div>
 				</nav>
 				<!-- / Navbar -->
+							<input type="hidden" name="category1" value="<%=category%>" default="0">
+							<input type="hidden" name="keyword1" value="<%=keyword%>" default="0">
 				</form>  
-
+				
 				<!-- Content wrapper -->
 				<div class="container">
 					<div class="row">
@@ -109,7 +114,7 @@
 									<tr>
 										<td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong><%=num-- %></strong></td>
 										<td><%=adopt.getType() %></td>
-										<td><a id="bt_detail" href="/admin/adopt/detail?adopt_idx=<%=adopt.getAdopt_idx() %>"><%=adopt.getName() %></a></td>
+										<td><a id="bt_detail" href="/admin/adopt/detail?adopt_idx=<%=adopt.getAdopt_idx() %>" name="name"><%=adopt.getName() %></a></td>
 										<td><%= adopt.getRegdate().substring(0,10) %></td>
 										<td>관리자</td>
 										<%if(adopt.getStatus()==1){ %>
@@ -156,7 +161,7 @@
 										</nav>
 									</div>
 									<div class="col-sm-2">										
-										<button type="button" class="btn btn-primary">엑셀출력</button>
+										<button type="button" class="btn btn-primary" id="bt_excell">엑셀출력</button>
 										<button type="button" class="btn btn-primary" id="bt_regist">입양등록</button>
 									</div>
 							</div>
@@ -194,6 +199,15 @@ function getListBySearch(){
 	$("#form1").submit();  
 }
 
+function PrevExcell(){
+	console.log()
+	 $("#form1").attr({
+			action:"/admin/adopt/excell",
+			method:"post"
+		});
+	$("#form1").submit();  
+}
+
 $(function(){
 	$("#bt_regist").click(function(){
 		location.href="/admin/adopt/registform";
@@ -203,6 +217,9 @@ $(function(){
 		getListBySearch();
 	});
 	
+	$("#bt_excell").click(function(){
+		PrevExcell()
+	});
 });
 
 </script>

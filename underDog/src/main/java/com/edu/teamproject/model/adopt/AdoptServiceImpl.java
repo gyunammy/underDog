@@ -5,9 +5,14 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.edu.teamproject.domain.Adopt;
 import com.edu.teamproject.domain.AdoptImg;
+import com.edu.teamproject.exception.AdoptException;
+import com.edu.teamproject.exception.AdoptImgException;
+import com.edu.teamproject.exception.UploadException;
 import com.edu.teamproject.util.FileManager;
 
 @Service
@@ -32,8 +37,8 @@ public class AdoptServiceImpl implements AdoptService{
 		return adoptDAO.select(adopt_idx);
 	}
 
-	@Override
-	public void regist(Adopt adopt, String dir) {
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void regist(Adopt adopt, String dir) throws AdoptException, AdoptImgException, UploadException{
 		
 		//입양정보 등록
 		adoptDAO.insert(adopt);

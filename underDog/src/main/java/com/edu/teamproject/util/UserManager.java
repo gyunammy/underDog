@@ -6,24 +6,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.edu.teamproject.domain.User;
-import com.edu.teamproject.model.adopt.UserService;
+import com.edu.teamproject.domain.Member;
+import com.edu.teamproject.model.adopt.MemberService;
 
 public class UserManager {
 	
 	@Autowired
-	private UserService userService;
+	private MemberService userService;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	public boolean loginCheck(User user) {
+	public boolean loginCheck(Member user) {
 		
-		List<User> userList=userService.selectAll();
+		List<Member> userList=userService.selectAll();
 		
 		boolean result=true;
 		
 		for(int a=0;a<userList.size();a++) {
-			User userByDB =userList.get(a);
+			Member userByDB =userList.get(a);
 			
 			logger.info("추출한 user"+ userByDB);
 			

@@ -21,8 +21,8 @@
 
 <%
 	Adopt adopt = (Adopt) request.getAttribute("adopt");
-	String path = (String) request.getAttribute("path");
-	System.out.println(adopt);
+String path = (String) request.getAttribute("path");
+System.out.println(adopt);
 %>
 
 <style type="text/css">
@@ -50,7 +50,7 @@
 			<!-- Menu -->
 
 			<%@include file="../inc/menu.jsp"%>
-			
+
 			<div class="container">
 				<div class="row">
 					<div class="layout-page" align="center">
@@ -58,18 +58,12 @@
 							<div class="card mb-4">
 								<h5 class="card-header">입양 등록</h5>
 								<div class="card-body">
-<<<<<<< HEAD
-<<<<<<< HEAD
-									<input type="hidden" name="adopt_idx"
-										value="<%=adopt.getAdopt_idx()%>" />
-=======
+								
+									<input type="hidden" name="adopt_idx" value="<%=adopt.getAdopt_idx()%>" /> 
+									<input type="hidden" name="status" value="<%=adopt.getStatus()%>" />
 									<input type="hidden" name="adopt_idx" value="<%=adopt.getAdopt_idx()%>" />
 									<input type="hidden" name="status" value="<%=adopt.getStatus()%>" />
->>>>>>> 66788b52ecdce04801df04ea6bf088be96bd4f12
-=======
-									<input type="hidden" name="adopt_idx" value="<%=adopt.getAdopt_idx()%>" />
-									<input type="hidden" name="status" value="<%=adopt.getStatus()%>" />
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
+
 									<div class="mb-3 row">
 										<label for="html5-text-input" class="col-md-2 col-form-label">이름</label>
 										<div class="col-md-10">
@@ -116,12 +110,12 @@
 										<label for="html5-url-input" class="col-md-2 col-form-label"></label>
 
 										<div class="col-md-10" align="left">
-											
-											<%for(AdoptImg adoptImg : adopt.getAdoptImgList()){ %>
-												<div class="box-style">
-													<img alt="" src="/resources/data/<%=adoptImg.getFilename() %>">
-												</div>
-											<%} %>
+
+											<%for (AdoptImg adoptImg : adopt.getAdoptImgList()) {%>
+											<div class="box-style">
+												<img alt=""src="/resources/data/<%=adoptImg.getFilename()%>">
+											</div>
+											<%}%>
 
 										</div>
 									</div>
@@ -139,21 +133,13 @@
 											id="bt_del">삭제</button>
 										<button type="button" class="btn rounded-pill btn-primary"
 											id="bt_list">목록</button>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
-										<%int status=adopt.getStatus(); %>
-										<%if(status==0){ %>
+
+										<% int status = adopt.getStatus(); %>
+										<% if (status == 0) { %>
 											<button type="button" class="btn rounded-pill btn-warning" id="bt_status">입양처리</button>
-										<%}else{ %>										
+										<%} else {%>
 											<button type="button" class="btn rounded-pill btn-secondary" id="bt_status">입양취소</button>
-										<%} %>
-<<<<<<< HEAD
->>>>>>> 66788b52ecdce04801df04ea6bf088be96bd4f12
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
+										<%}%>
 									</div>
 								</div>
 						</form>
@@ -204,11 +190,6 @@ function del(){
 	$("#form1").submit();
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
 function adoptStatusChange(){
 	let json={};
 	
@@ -243,10 +224,6 @@ function adoptStatusChange(){
 	})
 }
 
-<<<<<<< HEAD
->>>>>>> 66788b52ecdce04801df04ea6bf088be96bd4f12
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
 $(function(){
 	
 	$("#content").summernote({
@@ -271,28 +248,14 @@ $(function(){
 	$("#bt_list").click(function(){
 		location.href="/admin/adopt/list";
 	})
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
-	
+
 	//입양완료 버튼 눌렀을 때
 	$("#bt_status").click(function(){
 		if(confirm("입양처리 하시겠습니까?")){
 			adoptStatusChange();
 		}
 	})
-	
-<<<<<<< HEAD
->>>>>>> 66788b52ecdce04801df04ea6bf088be96bd4f12
-=======
->>>>>>> 6229174136628c140e4f29009ac149a88bc35d01
-		
+
 });
 </script>
 </html>
-<<<<<<< HEAD
-
-=======
->>>>>>> 66788b52ecdce04801df04ea6bf088be96bd4f12

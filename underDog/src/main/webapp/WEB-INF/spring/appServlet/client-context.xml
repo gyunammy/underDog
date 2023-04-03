@@ -39,9 +39,14 @@
 		</aop:aspect>
 	</aop:config>
 	
-	<!-- userGlobalException -->
-	<beans:bean id="userGlobalException" class="com.edu.teamproject.aop.UserGlobalException"/>
+	<!-- memberRestGlobalException -->
+	<beans:bean id="restMemberGlobalException" class="com.edu.teamproject.aop.RestMemberGlobalException"/>
 	
+	<!-- memberGlobalException -->
+	<beans:bean id="memberGlobalException" class="com.edu.teamproject.aop.MemberGlobalException"/>
+	
+	<!--AnimalAPi-->
+	<beans:bean id="animalAPI" class="com.edu.teamproject.util.AnimalAPI"/>
 
 
 	<beans:bean id="googleLogin" class="com.edu.teamproject.sns.GoogleLogin">

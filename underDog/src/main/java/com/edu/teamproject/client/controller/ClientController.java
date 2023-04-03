@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.edu.teamproject.exception.UserException;
+import com.edu.teamproject.exception.MemberException;
 import com.edu.teamproject.util.Message;
 
 @Controller
@@ -19,6 +19,13 @@ public class ClientController {
 	public String getMain(HttpServletRequest request) {
 		return "client/index";
 	}
+	
+	@GetMapping("/afterLog")
+	public String getMainAfterLog(HttpServletRequest request) {
+		return "client/indexAfferLogin";
+	}
+	
+	
 	
 	@GetMapping("/contact")
 	public String getContactPage(HttpServletRequest request) {
@@ -35,13 +42,14 @@ public class ClientController {
 		return "client/default";
 	}
 	
+	
 	@GetMapping("/sum")
 	public String getsum(HttpServletRequest request) {
 		return "client/sumpage";
 	}
 	
-	@ExceptionHandler(UserException.class)
-	public String Userhandle (UserException e){
+	@ExceptionHandler(MemberException.class)
+	public String Userhandle (MemberException e){
 		
 		return "client/loginrequest";
 	}

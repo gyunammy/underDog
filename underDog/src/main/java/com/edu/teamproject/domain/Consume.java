@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class Consume {
 	private int consume_idx;
-	private String writer;
+	private String author;
 	private String date;
 	private int price;
 	private String content;

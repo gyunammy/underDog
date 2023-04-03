@@ -15,6 +15,7 @@
 
 <%@include file="./inc/header_link.jsp"%>
 
+
 <style type="text/css">
 .container {
 	margin: auto;
@@ -77,7 +78,7 @@
 				</div>
 				<h5></h5>
 				<div class="row-12" style="padding: 10px">
-					<a class="cart-btn" id="bt_google"></i> 구글ID로 로그인</a>
+					<a href="#" class="cart-btn" id="bt_google"></i> 구글ID로 로그인</a>
 				</div>
 				<div class="row-12" style="padding: 10px">
 					<a class="cart-btn" id="bt_kakao"></i> 카카오ID로 로그인</a>
@@ -102,16 +103,23 @@
 
 <script type="text/javascript">
 
+function gotoAuthForm(sns){
+		
+	$.ajax({
+		url:"/rest/member/authform/"+sns,
+	
+	
+		type:"get",
+		success:function(result, status, xhr){
+		 	//console.log("인증주소는", result.msg);
+		 	location.href=result.msg;
+		}
+	});
+}
+
 $(function(){
 	$("#bt_google").click(function(){
-		$.ajax({
-			url:"/rest/member/authform/google",
-			type:"get",
-			success:function(result, status, xhr){
-			 	console.log("인증주소는", result.msg);
-			 	location.href=result.msg;
-			}
-		})
+		gotoAuthForm("google");
 	});
 })
 </script>

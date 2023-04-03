@@ -2,7 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Adopt">
 
-	<select id="selectAll" resultType="Adopt">
+	<resultMap type="Adopt" id="AdoptMap">
+		<id column="adopt_idx" property="adopt_idx"/>
+		<result column="name" property="name"/>
+		<result column="gender" property="gender"/>
+		<result column="type" property="type"/>
+		<result column="age" property="age"/>
+		<result column="content" property="content"/>
+		<result column="status" property="status"/>
+		<result column="regdate" property="regdate"/>
+		
+		<collection 
+			column="Adopt_idx"
+			property="adoptImgList"
+			javaType="java.util.List"
+			ofType="AdoptImg"
+			select="AdoptImg.selectByAdopt"/>
+	
+	</resultMap>
+
+	<select id="selectAll" resultMap="AdoptMap">
 		select * from adopt order by regdate desc
 	</select>
 	
@@ -18,11 +37,11 @@
 	
 	<!-- adopt 등록 -->
 	<insert id="insert" parameterType="Adopt">
-		insert into adopt(name, gender, type, age, content, status)
-		values(#{name},#{gender},#{type},#{age},#{content},#{status})
+		insert into adopt(adopt_idx, name, gender, type, age, content, status)
+		values(seq_adopt.nextval, #{name},#{gender},#{type},#{age},#{content},#{status})
 						           <!-- 무엇을                               어디에                              언제                   무엇의 타입   -->
 		<selectKey keyColumn="adopt_idx" keyProperty="adopt_idx" order="AFTER" resultType="int">
-			select last_insert_id() as adopt_idx
+			select seq_adopt.currval from dual
 		</selectKey>
 		
 	</insert>

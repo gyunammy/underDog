@@ -1,4 +1,12 @@
+<%@page import="com.edu.teamproject.util.PageManager"%>
+<%@page import="com.edu.teamproject.domain.Member"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html;charset=UTF-8"%>
+<%
+	List<Member> userList = (List) request.getAttribute("userList");
+	PageManager pm = new PageManager();
+	pm.init(userList, request);
+%>
 <!DOCTYPE html>
 
 <!-- beautify ignore:start -->
@@ -36,24 +44,24 @@
 					class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
 					id="layout-navbar">
 
-					
+
 					<div
 						class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
 						<a class="nav-item nav-link px-0 me-xl-4"
 							href="javascript:void(0)"> <i class="bx bx-menu bx-sm"></i>
 						</a>
 					</div>
-					
-					<div class="col-2">			
+
+					<div class="col-2">
 						<select id="selectTypeOpt" class="form-select color-dropdown">
-							<option value="bg-primary">선택▼</option>						
-	                        <option value="bg-primary">이름</option>
-	                        <option value="bg-secondary">가입일</option>
-	                        <option value="bg-success">전화번호</option>
-	                        <option value="bg-danger">자원봉사</option>
-	                    </select>
-                    </div>
-                    <div class="col-1"></div>
+							<option value="bg-primary">선택▼</option>
+							<option value="bg-primary">이름</option>
+							<option value="bg-secondary">가입일</option>
+							<option value="bg-success">전화번호</option>
+							<option value="bg-danger">자원봉사</option>
+						</select>
+					</div>
+					<div class="col-1"></div>
 
 					<div class=" navbar-nav-right d-flex align-items-center"
 						id="navbar-collapse">
@@ -65,7 +73,7 @@
 									placeholder="Search..." aria-label="Search..." />
 							</div>
 						</div>
-						
+
 						<div>
 							<button id="showToastPlacement" class="btn btn-primary d-block">검색</button>
 						</div>
@@ -87,65 +95,105 @@
 									<tr>
 										<th>No</th>
 										<th>이름</th>
+										<th>이메일</th>
+										<th>가입경로</th>
 										<th>가입일</th>
-										<th>전화번호</th>
 										<th>자원봉사</th>
-										<th>자원봉사신청일</th>
 									</tr>
 								</thead>
 								<tbody class="table-border-bottom-0">
+									<%
+										int curPos = pm.getCurPos();
+									%>
+									<%
+										int num = pm.getNum();
+									%>
+									<%
+										for (int a = 0; a < pm.getPageSize(); a++) {
+									%>
+									<%
+										if (num < 1)
+																	break;
+									%>
+									<%
+										Member user = userList.get(curPos++);
+									%>
 									<tr>
 										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>3</strong></td>
-										<td>원더우먼</td>
-										<td>2023-03-08</td>
-										<td>010-1234-5678</td>
+											<strong><%=num--%></strong></td>
+										<td><%=user.getName()%></td>
+										<td><%=user.getEmail()%></td>
+										<td><%=user.getSns()%></td>
+										<td><%=user.getRegdate().substring(0, 10)%></td>
+										<%
+											if (user.getChecking() == 1) {
+										%>
 										<td><span class="badge bg-label-primary me-1">신청</span></td>
-										<td>2023-03-08</td>
+										<%
+											} else {
+										%>
+										<td>-</td>
+										<%
+											}
+										%>
 									</tr>
-									<tr>
-										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>2</strong></td>
-										<td>배트맨</td>
-										<td>2023-03-08</td>
-										<td>010-1234-5678</td>
-										<td></td>
-										<td>2023-03-08</td>										
-									</tr>
-									<tr>
-										<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-											<strong>1</strong></td>
-										<td>슈퍼맨</td>
-										<td>2023-03-08</td>
-										<td>010-1234-5678</td>
-										<td><span class="badge bg-label-primary me-1">신청</span></td>
-										<td>2023-03-08</td>										
-									</tr>
+									<%
+										}
+									%>
 								</tbody>
 							</table>
 							<div class="col-conter">
-								<div class="demo-inline-spacing" >
+								<div class="demo-inline-spacing">
 									<!-- Basic Pagination -->
 									<div class="row">
 										<div class="col">
 											<nav aria-label="Page navigation">
-												<ul class="pagination ">
+												<ul class="pagination">
+													<%
+														if (pm.getTotalPage() < pm.getFirstPage() - 1) {
+													%>
 													<li class="page-item prev"><a class="page-link"
-														href="javascript:void(0);"><i
+														href="/admin/memberlist?currentPage=<%=pm.getFirstPage() - 1%>"><i
 															class="tf-icon bx bx-chevron-left"></i></a></li>
-													<li class="page-item"><a class="page-link"
-														href="javascript:void(0);">1</a></li>
-													<li class="page-item"><a class="page-link"
-														href="javascript:void(0);">2</a></li>
-													<li class="page-item active"><a class="page-link"
-														href="javascript:void(0);">3</a></li>
-													<li class="page-item"><a class="page-link"
-														href="javascript:void(0);">4</a></li>
-													<li class="page-item"><a class="page-link"
-														href="javascript:void(0);">5</a></li>
+													<%
+														} else {
+													%>
+													<li class="page-item prev"><a class="page-link"
+														href="javascript:alert('이전페이지가 없습니다.')"><i
+															class="tf-icon bx bx-chevron-left"></i></a></li>
+													<%
+														}
+													%>
+													<%
+														for (int a = pm.getFirstPage(); a <= pm.getLastPage(); a++) {
+													%>
+													<%
+														if (a > pm.getTotalPage())
+														break;
+													%>
+													<li
+														class="page-item <%if (a == pm.getCurrentPage()) {%>active<%}%>"><a
+														class="page-link"
+														href=" memberList?currentPage=<%=a%>"><%=a%></a></li>
+													<%
+														}
+													%>
+
+													<%
+														if (pm.getTotalPage() > pm.getLastPage() + 1) {
+													%>
 													<li class="page-item next"><a class="page-link"
-														href="javascript:void(0);"><i
+														href="/admin/memberlist?currentPage=<%=pm.getLastPage() + 1%>"><i
 															class="tf-icon bx bx-chevron-right"></i></a></li>
+													<%
+														} else {
+													%>
+													<li class="page-item next"><a class="page-link"
+														href="javascript:alert('다음페이지가 없습니다.');"><i
+															class="tf-icon bx bx-chevron-right"></i></a></li>
+													<%
+														}
+													%>
 												</ul>
 											</nav>
 										</div>
