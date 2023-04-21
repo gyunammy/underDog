@@ -93,7 +93,7 @@
 				<div data-i18n="Account Settings">입양</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/adopt/list"
+				<li class="menu-item"><a href="/admin/adopts"
 					class="menu-link">
 						<div data-i18n="Account">입양리스트</div>
 				</a></li>

@@ -54,6 +54,9 @@ System.out.println(adopt);
 			<div class="container">
 				<div class="row">
 					<div class="layout-page" align="center">
+					
+						<form id="form2"></form>
+						
 						<form id="form1">
 							<div class="card mb-4">
 								<h5 class="card-header">입양 등록</h5>
@@ -183,11 +186,16 @@ function edit(){
 }
 
 function del(){
-	$("#form1").attr({
-		action:"/admin/adopt/del",
-		method:"post"
-	});
-	$("#form1").submit();
+	
+	$.ajax({
+		url:"/admin/rest/adopt/"+<%= adopt.getAdopt_idx()%>,
+		type:"delete",
+		success:function(result, status, xhr){
+			alert(result.msg),
+			location.href="/admin/adopts";
+			console.log("닿음");
+		}
+	})
 }
 
 function adoptStatusChange(){
@@ -246,7 +254,7 @@ $(function(){
 	
 	//목록 버튼 눌렀을 때
 	$("#bt_list").click(function(){
-		location.href="/admin/adopt/list";
+		location.href="/admin/adopts";
 	})
 
 	//입양완료 버튼 눌렀을 때

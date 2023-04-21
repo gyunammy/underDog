@@ -192,10 +192,12 @@ function regist(){
 		contentType:false,    // application/x-www-form~~ 사용여부
 		success:function(result, status, xhr){
 			alert(result.msg);
-			location.href="/admin/adopt/list";
+			location.href="/admin/adopts";
 		},
-		error:function(xhr, status, err){
-			
+		error:function(xhr, status, error){
+			console.log("xhr is : ",xhr);
+			console.log("status is : ",status);
+			console.log("error is : ",error);
 		}
 	});
 	
@@ -274,7 +276,7 @@ $(function(){
 	
 	//목록 버튼 눌렀을 때
 	$("#bt_list").click(function(){
-		location.href="/admin/adopt/list";
+		location.href="/admin/adopts";
 	})
 	
 	$("input[name='file']").change(function(){

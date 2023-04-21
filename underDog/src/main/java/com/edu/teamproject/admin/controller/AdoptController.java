@@ -10,7 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,7 +33,7 @@ public class AdoptController {
 	private AdoptImgService adoptImgService;
 
 	// 입양리스트 페이지 요청
-	@GetMapping("/adopt/list")
+	@GetMapping("/adopts")
 	public ModelAndView getAdoptList(HttpServletRequest request) {
 		
 		List<Adopt> adoptList=adoptService.selectAll();
@@ -49,8 +51,9 @@ public class AdoptController {
 		return "admin/adopt/adoptRegistPage";
 	}
 
-	@GetMapping("/adopt/detail")
-	public ModelAndView getDetail(int adopt_idx, HttpServletRequest request) {
+	@GetMapping("/adopt/{adopt_idx}")
+	public ModelAndView getDetail(@PathVariable("adopt_idx") int adopt_idx, HttpServletRequest request) {
+		
 		logger.info("넘어온 idx" + adopt_idx);
 
 		Adopt adopt = adoptService.select(adopt_idx);
@@ -71,13 +74,7 @@ public class AdoptController {
 		return mav;
 	}
 
-	@PostMapping("/adopt/del")
-	public ModelAndView del(Adopt adopt) {
 
-		adoptService.delete(adopt.getAdopt_idx());
-
-		return new ModelAndView("redirect:list");
-	}
 
 	// 검색 기능을 통한 입양 리스트
 	@PostMapping("/adopt/search")

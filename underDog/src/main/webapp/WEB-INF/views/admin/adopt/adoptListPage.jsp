@@ -114,7 +114,7 @@
 									<tr>
 										<td><i class="fab fa-angular fa-lg text-danger me-3"></i><strong><%=num-- %></strong></td>
 										<td><%=adopt.getType() %></td>
-										<td><a id="bt_detail" href="/admin/adopt/detail?adopt_idx=<%=adopt.getAdopt_idx() %>" name="name"><%=adopt.getName() %></a></td>
+										<td><a id="bt_detail" href="/admin/adopt/<%=adopt.getAdopt_idx() %>" name="name"><%=adopt.getName() %></a></td>
 										<td><%= adopt.getRegdate().substring(0,10) %></td>
 										<td>관리자</td>
 										<%if(adopt.getStatus()==1){ %>

@@ -20,5 +20,5 @@ public class Adopt {
 	
 	private List<AdoptImg> adoptImgList; 
 	
-	private MultipartFile[] photo;
+	private MultipartFile[] photo; 
 }

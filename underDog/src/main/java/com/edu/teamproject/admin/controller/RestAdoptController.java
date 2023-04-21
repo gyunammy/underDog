@@ -8,12 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.teamproject.domain.Adopt;
 import com.edu.teamproject.model.adopt.AdoptService;
@@ -83,5 +86,19 @@ public class RestAdoptController {
 		ResponseEntity entity = new ResponseEntity<Message>(message, HttpStatus.OK);
 		
 		return entity;
+	}
+	
+	@DeleteMapping("/adopt/{adopt_idx}")
+	public ResponseEntity<Message> del(@PathVariable("adopt_idx") int adopt_idx) {
+
+		adoptService.delete(adopt_idx);
+		
+		Message message = new Message();
+		message.setMsg("삭제 성공");
+		
+		ResponseEntity entity = new ResponseEntity<Message>(message, HttpStatus.OK);
+
+		return entity;
+		
 	}
 }

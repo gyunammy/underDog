@@ -9,7 +9,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 								http://www.springframework.org/schema/jee https://www.springframework.org/schema/jee/spring-jee.xsd
 								http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
-								http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 								http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -30,8 +29,7 @@
 	p:dataSource-ref="dataSource" p:configLocation="classpath:com/edu/teamproject/mybatis/config.xml"/>
 	
 	<beans:bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-	<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
-
+		<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
 	</beans:bean>
 
 	<!-- 파일업로드하기 위한 빈등록 -->
