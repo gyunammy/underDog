@@ -82,7 +82,7 @@
 				<div data-i18n="Account Settings">회원관리</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/memberList"
+				<li class="menu-item"><a href="/admin/members"
 					class="menu-link">
 						<div data-i18n="Account">회원리스트</div>
 				</a></li>
@@ -104,11 +104,11 @@
 				<div data-i18n="Authentications">후원</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/donateList"
+				<li class="menu-item"><a href="/admin/donates"
 					class="menu-link">
 						<div data-i18n="Basic">후원리스트</div>
 				</a></li>
-				<li class="menu-item"><a href="/admin/consumeList"
+				<li class="menu-item"><a href="/admin/consumes"
 					class="menu-link">
 						<div data-i18n="Basic">비용처리</div>
 				</a></li>
@@ -119,7 +119,7 @@
 				<div data-i18n="Misc">자원봉사</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/service/list"
+				<li class="menu-item"><a href="/admin/services"
 					class="menu-link">
 						<div data-i18n="Basic">자원봉사자 모집</div>
 				</a></li>
@@ -131,11 +131,11 @@
 				<div data-i18n="Misc">정보소식</div>
 		</a>
 			<ul class="menu-sub">
-				<li class="menu-item"><a href="/admin/reportList"
+				<li class="menu-item"><a href="/admin/reports"
 					class="menu-link">
 						<div data-i18n="Basic">신고목록</div>
 				</a></li>
-				<li class="menu-item"><a href="/admin/notice/list"
+				<li class="menu-item"><a href="/admin/notices"
 					class="menu-link">
 						<div data-i18n="Basic">공지사항</div>
 				</a></li>
@@ -148,7 +148,7 @@
 			<div data-i18n="Misc">재단활동</div>
 	</a>
 		<ul class="menu-sub">
-			<li class="menu-item"><a href="/admin/campaign/list"
+			<li class="menu-item"><a href="/admin/campaigns"
 				class="menu-link">
 					<div data-i18n="Basic">공모사업 목록</div>
 			</a></li>

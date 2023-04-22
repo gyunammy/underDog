@@ -17,7 +17,7 @@ public class MemberController {
 	private MemberService memberService;
 	
 	//멤버리스트 페이지 요청
-	@GetMapping("/memberList")
+	@GetMapping("/members")
 	public ModelAndView getMemberList() {
 		
 		List<Member> userList = memberService.selectAll();

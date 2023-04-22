@@ -135,7 +135,7 @@
 											<ul class="pagination">
 												<%if(pm.getTotalPage()<pm.getFirstPage()-1){ %>
 												<li class="page-item prev"><a class="page-link"
-													href="/admin/adopt/list?currentPage=<%=pm.getFirstPage()-1%>"><i
+													href="/admin/adopts?currentPage=<%=pm.getFirstPage()-1%>"><i
 														class="tf-icon bx bx-chevron-left"></i></a></li>
 												<%}else{ %>
 													<li class="page-item prev"><a class="page-link"
@@ -145,12 +145,12 @@
 												<%for(int a=pm.getFirstPage();a<=pm.getLastPage();  a++){ %>
 												<%if(a>pm.getTotalPage())break; %>
 												<li class="page-item <%if(a==pm.getCurrentPage()){ %>active<%}%>"><a class="page-link"
-													href=" list?currentPage=<%=a%>"><%=a %></a></li>
+													href="/admin/adopts?currentPage=<%=a%>"><%=a %></a></li>
 												<%} %>
 												
 												<%if(pm.getTotalPage()> pm.getLastPage()+1){ %>
 													<li class="page-item next"><a class="page-link"
-														href="/admin/adopt/list?currentPage=<%=pm.getLastPage()+1%>"><i
+														href="/admin/adopts?currentPage=<%=pm.getLastPage()+1%>"><i
 															class="tf-icon bx bx-chevron-right"></i></a></li>
 												<%} else { %>
 														<li class="page-item next"><a class="page-link"

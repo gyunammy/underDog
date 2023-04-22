@@ -65,6 +65,5 @@ public class ExcellController {
 		mav.setViewName("admin/excellPage");
 		
 		return mav;
-		//return "admin/adopt/excellPrev";
 	}
 }

@@ -119,11 +119,14 @@
 	}
 
 	function del() {
-		$("#form1").attr({
-			action : "/admin/notice/del",
-			method : "post"
-		});
-		$("#form1").submit();
+		$.ajax({
+			url:"/admin/rest/notice/"+<%=notice.getNotice_idx()%>,
+			type:"delete",
+			success:function(result, status, xhr){
+				alert(result.msg);
+				location.href="/admin/notices";
+			}
+		})
 	}
 
 	$(function() {
@@ -148,7 +151,7 @@
 
 		//목록 버튼 눌렀을 때
 		$("#bt_list").click(function() {
-			location.href = "/admin/notice/list";
+			location.href = "/admin/notices";
 		})
 
 	});

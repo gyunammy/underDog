@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.teamproject.domain.Campaign;
@@ -18,7 +19,7 @@ public class CampaignController {
 	private CampaignService campaignService;
 	
 	//공모사업 리스트 페이지 요청
-	@GetMapping("/campaign/list")
+	@GetMapping("/campaigns")
 	public ModelAndView getCampaignList() {
 		
 		List<Campaign> campaignList = campaignService.selectAll();
@@ -30,8 +31,8 @@ public class CampaignController {
 		return mav;
 	}
 	
-	@GetMapping("/campaign/detail")
-	public ModelAndView getCampaignDetail(int campaign_idx) {
+	@GetMapping("/campaigns/{campaign_idx}")
+	public ModelAndView getCampaignDetail(@PathVariable("campaign_idx") int campaign_idx) {
 		
 		Campaign campaign = campaignService.select(campaign_idx);
 		

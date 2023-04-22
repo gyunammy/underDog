@@ -26,7 +26,7 @@ public class ServiceController {
 	private ServiceService serviceService;
 	
 	//봉사자모집 리스트 페이지 요청
-	@GetMapping("/service/list")
+	@GetMapping("/services")
 	public ModelAndView getServiceList() {
 		
 		List<Service> serviceList= serviceService.selectAll();

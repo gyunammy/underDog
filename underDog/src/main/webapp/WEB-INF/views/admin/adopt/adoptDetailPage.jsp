@@ -197,24 +197,12 @@ function del(){
 		}
 	})
 }
-
+ 
 function adoptStatusChange(){
-	let json={};
-	
-	json['adopt_idx']=$("#form1 input[name='adopt_idx']").val();
-	json['status']=$("#form1 input[name='status']").val();
-	json['name']=$("#form1 input[name='name']").val();
-	json['gender']=$("#form1 select[name='gender']").val();
-	json['type']=$("#form1 select[name='type']").val();
-	json['age']=$("#form1 input[name='age']").val();
-	json['content']=$("#form1 textarea[name='content']").val();
-	
+
 	$.ajax({
-		url:"/admin/rest/adopStatus",
+		url:"/admin/rest/adop/"+<%= adopt.getAdopt_idx()%>,
 		type:"put",
-		contentType:"application/json;charset=utf-8",
-		data:JSON.stringify(json),
-		processData:false,
 		success:function(result, status, xhr){
 			alert(result.msg);	
 			

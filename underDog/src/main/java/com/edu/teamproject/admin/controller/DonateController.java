@@ -18,7 +18,7 @@ public class DonateController {
 	private DonateService donateService;
 	
 	//후원 리스트 페이지 요청
-	@GetMapping("/donateList")
+	@GetMapping("/donates")
 	public ModelAndView getAdopList() {
 		
 		List<Donate> donateList=(List)donateService.selectAll();
@@ -31,7 +31,7 @@ public class DonateController {
 	}
 	
 	//비용처리 리스트 페이지 요청
-	@GetMapping("/consumeList")
+	@GetMapping("/consumes")
 	public String getConsumeList() {
 		return "admin/donate/consumeListPage";
 	}

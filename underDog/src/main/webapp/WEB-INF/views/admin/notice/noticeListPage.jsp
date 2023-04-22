@@ -108,7 +108,7 @@
 										<tr>
 											<td><i class="fab fa-angular fa-lg text-danger me-3"></i>
 												<strong><%= num-- %></strong></td>
-											<td><a id="bt_detail" href="/admin/notice/detail?notice_idx=<%=notice.getNotice_idx() %>"><%=notice.getTitle() %></a></td>
+											<td><a id="bt_detail" href="/admin/notices/<%=notice.getNotice_idx() %>"><%=notice.getTitle() %></a></td>
 											<td>관리자</td>
 											<td><%=notice.getRegdate().substring(0,10) %></td>
 										</tr>

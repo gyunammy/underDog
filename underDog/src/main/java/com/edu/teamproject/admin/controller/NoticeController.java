@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,7 +35,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 리스트 페이지 요청
-	@GetMapping("/notice/list")
+	@GetMapping("/notices")
 	public ModelAndView getreportList() {
 		
 		List<Notice> noticeList=(List)noticeService.selectAll();
@@ -74,8 +75,8 @@ public class NoticeController {
 		return mav;
 	}
 	
-	@GetMapping("/notice/detail")
-	public ModelAndView getDetail(int notice_idx) {
+	@GetMapping("/notices/{notice_idx}")
+	public ModelAndView getDetail(@PathVariable("notice_idx") int notice_idx) {
 		logger.info("넘어온 idx"+notice_idx);
 		
 		Notice notice = noticeService.select(notice_idx);
@@ -85,14 +86,6 @@ public class NoticeController {
 		mav.setViewName("admin/notice/noticeDetailPage");
 		
 		return mav;
-	}
-	
-	@PostMapping("/notice/del")
-	public ModelAndView del(Notice notice) {
-		
-		noticeService.delete(notice.getNotice_idx());
-		
-		return new ModelAndView("redirect:list");
 	}
 	
 	//신고 리스트 페이지 요청

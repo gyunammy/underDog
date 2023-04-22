@@ -67,11 +67,11 @@ public class RestAdoptController {
 		return entity;
 	}
 	
-	@PutMapping("/adopStatus")
-	public ResponseEntity<Message> adoptSuccess(@RequestBody Adopt adopt){
+	@PutMapping("/adop/{adopt_idx}")
+	public ResponseEntity<Message> adoptSuccess(@PathVariable("adopt_idx") int adopt_idx){
 		
-		logger.info("입양 처리위해 넘어온 adopt 정보는 "+ adopt);
-	
+		Adopt adopt = adoptService.select(adopt_idx);
+		
 		if(adopt.getStatus()==0) {
 			adopt.setStatus(1);
 		}else {

@@ -107,7 +107,7 @@ function regist(){
 		contentType:false, 
 		success:function(result, status, xhr){
 			alert(result.msg);
-			location.href="/admin/notice/list";
+			location.href="/admin/notices";
 		},
 		error:function(xhr, status, result){
 			
@@ -129,7 +129,7 @@ $(function(){
 	
 	//목록 버튼 눌렀을 때
 	$("#bt_list").click(function(){
-		location.href="/admin/notice/list";
+		location.href="/admin/notices";
 	})
 	
 });

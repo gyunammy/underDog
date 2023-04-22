@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,6 +51,19 @@ public class RestNoticeController {
 		message.setMsg("수정성공");
 		
 		ResponseEntity entity = new ResponseEntity<Message>(message,HttpStatus.OK);
+		return entity;
+	}
+	
+	@DeleteMapping("/notice/{notice_idx}")
+	public ResponseEntity<Message> del(@PathVariable("notice_idx") int notice_idx){
+		
+		noticeService.delete(notice_idx);
+		
+		Message message = new Message();
+		message.setMsg("삭제 성공");
+		
+		ResponseEntity entity = new ResponseEntity<Message>(message,HttpStatus.OK);
+		
 		return entity;
 	}
 }
