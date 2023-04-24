@@ -89,7 +89,7 @@ public class NoticeController {
 	}
 	
 	//신고 리스트 페이지 요청
-	@GetMapping("/reportList")
+	@GetMapping("/reports")
 	public String getNoticeList() {
 		return "admin/notice/reportListPage";
 	}

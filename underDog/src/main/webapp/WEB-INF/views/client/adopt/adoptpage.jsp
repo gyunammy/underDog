@@ -116,7 +116,7 @@ const row={
 		},
 		methods:{
 			getDetail(adopt_idx){
-				location.href="/adopt/detail?adopt_idx="+adopt_idx
+				location.href="/adopts/"+adopt_idx
 			}
 		}
 }
@@ -169,7 +169,7 @@ function pageLink(list, page, size){
 
 function getList(currentPage){
 	$.ajax({
-		url:"/rest/adopt",
+		url:"/rest/adopts",
 		type:"post",
 		success:function(result, status, xhr){
 			app1.adoptList=result;

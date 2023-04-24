@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.edu.teamproject.domain.Adopt;
@@ -27,21 +28,19 @@ public class AdoptController {
 	private AdoptImgService adoptImgService;
 	
 	//입양 페이지 요청
-	@GetMapping("/adopt")
+	@GetMapping("/adopts")
 	public String getAdoptPage(HttpServletRequest request) {
 		return "client/adopt/adoptpage";
 	}
 	
-	@GetMapping("/adopt/detail")
-	public ModelAndView getDetail(HttpServletRequest request, int adopt_idx) {
+	@GetMapping("/adopts/{adopt_idx}")
+	public ModelAndView getDetail(HttpServletRequest request, @PathVariable("adopt_idx")  int adopt_idx) {
 		
 		Adopt adopt=adoptService.select(adopt_idx);
 		
 		List<AdoptImg> adoptImgList = adoptImgService.selectByAdopt(adopt_idx);
 		
 		adopt.setAdoptImgList(adoptImgList);
-		
-		log.info("어째 잘 받아오니? : "+ adopt);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("adopt",adopt);

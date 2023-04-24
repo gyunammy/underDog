@@ -22,7 +22,7 @@
 							<ul>
 								<li class="current-list-item"><a href="/">Home</a></li>
 								
-								<li><a href="/adopt">입양</a></li>
+								<li><a href="/adopts">입양</a></li>
 								<li><a href="/donate">후원</a></li>								
 								
 								<li><a href="#">정보소식</a>

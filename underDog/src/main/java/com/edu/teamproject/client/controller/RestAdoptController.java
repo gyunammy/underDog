@@ -27,7 +27,7 @@ public class RestAdoptController {
 	@Autowired
 	private AdoptImgService adoptImgService;
 	
-	@PostMapping("/adopt")
+	@PostMapping("/adopts")
 	public List getAdoptList(HttpServletRequest request) {
 		
 		List<Adopt> adoptList=adoptService.selectAll();
