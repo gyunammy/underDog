@@ -20,13 +20,13 @@ public class ServiceController {
 	private AnimalAPI animalAPI;
 	
 	// 자원봉사 게시판 페이지 요청
-	@GetMapping("/service")
+	@GetMapping("/services")
 	public String getServicePage(HttpServletRequest request) {
 		return "client/service/servicepage";
 	}
 
 	// 보호소 페이지 요청
-	@GetMapping("/loc")
+	@GetMapping("/locs")
 	public ModelAndView getLocPage(HttpServletRequest request) {
 	
 		return new ModelAndView("client/service/locpage");

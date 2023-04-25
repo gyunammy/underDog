@@ -32,7 +32,6 @@ public class RestAdoptController {
 		
 		List<Adopt> adoptList=adoptService.selectAll();
 		
-		log.info("asdfasdf : "+ adoptList);
 		
 		return adoptList;
 	}

@@ -54,8 +54,8 @@
 
 								<li><a href="#">자원봉사</a>
 									<ul class="sub-menu">
-										<li><a href="/service">자원봉사 모집</a></li>
-										<li><a href="/loc">보호소 위치</a></li>
+										<li><a href="/services">자원봉사 모집</a></li>
+										<li><a href="/locs">보호소 위치</a></li>
 									</ul></li>
 								<li><a href=#>재단활동</a>
 									<ul class="sub-menu">
